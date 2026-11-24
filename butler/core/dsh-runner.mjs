@@ -85,9 +85,9 @@ export function runDsh({ text, sessionId, onEvent }) {
       events.push(event)
       if (event.type === 'session' && event.sessionId) resolvedSession = event.sessionId
       if (event.type === 'status' && event.phase === 'step_end' && event.usage) {
-        usage.inputTokens += Number(event.usage.inputTokens ?? 0)
-        usage.outputTokens += Number(event.usage.outputTokens ?? 0)
-        usage.totalTokens += Number(event.usage.totalTokens ?? 0)
+        usage.inputTokens = Number(event.usage.inputTokens ?? 0)
+        usage.outputTokens = Number(event.usage.outputTokens ?? 0)
+        usage.totalTokens = Number(event.usage.totalTokens ?? 0)
       }
       if (event.type === 'text' && event.text) textOut += event.text
       if (event.type === 'final') {

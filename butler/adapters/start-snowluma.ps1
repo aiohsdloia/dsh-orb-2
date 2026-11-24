@@ -33,6 +33,11 @@ if (-not (Test-Path -LiteralPath $pwFile)) {
     Set-Content -LiteralPath $pwFile -Value $pw -NoNewline -Encoding ASCII
 }
 
+$label = (& icacls $nodeExe 2>$null) -join ' '
+if ($label -match 'Low Mandatory') {
+    throw "node.exe has a Low integrity label (injection into QQ will fail). Fix: icacls 'butler' /setintegritylevel medium /T /Q then rerun."
+}
+
 $env:SNOWLUMA_WEBUI_HOST = $WebUIHost
 $env:SNOWLUMA_WEBUI_PORT = "$WebUIPort"
 $env:SNOWLUMA_WEBUI_BOOTSTRAP_PASSWORD = (Get-Content -LiteralPath $pwFile -Raw).Trim()
