@@ -66,6 +66,11 @@ while ($true) {
         if ($last -ne $week) {
             Write-Host "[hub] weekly trigger ($week)"
             Set-Content -LiteralPath $weeklyState -Value $week -NoNewline -Encoding ASCII
+            Write-Host "[hub] git sync before weekly"
+            $env:HTTPS_PROXY = 'http://127.0.0.1:7890'
+            $openlab = 'C:\Users\10840\Documents\OpenLab\sessions\2026-09-08-1614'
+            if (Test-Path -LiteralPath (Join-Path $openlab '.git')) { & git -C $openlab pull --ff-only 2>&1 | Out-Null }
+            if (Test-Path -LiteralPath (Join-Path $root '.git')) { & git -C $root pull --ff-only 2>&1 | Out-Null }
             Start-Hidden 'powershell.exe' @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', $weeklyRunner) 'weekly'
         }
     }

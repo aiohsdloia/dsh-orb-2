@@ -29,6 +29,13 @@
 - 只操作 ChatGPT 与 ZCode 两个窗口；不关闭应用、不杀进程、不点「退出登录/新建会话/设置」。
 - 主人说停就停。汇报要附证据（原文抄录、时间、状态）。
 
+## git 交接棒（PC-PC 同步，GitHub 私有仓库）
+
+- openlab 项目远端：`https://github.com/aiohsdloia/openlab`（本机路径 `C:\Users\10840\Documents\OpenLab\sessions\2026-09-08-1614`）。
+- 开工前：`git pull` + `git status` 干净才允许布置任务；把「当前 HEAD 与工作包基线是否一致」写进汇报。
+- 每个工作包收工后：`git add -A && git commit -m "<工作包> 完成报告" && git push`（如代理需先设 `HTTPS_PROXY=http://127.0.0.1:7890`）。
+- 冲突出现 → 不自动解决，立即停下请示主人。
+
 ## QQ 通知（需要主人知道时）
 
 用 pwsh 调用 OneBot HTTP 推送文件或文本到主人 QQ（号码与 token 在配置里）。示例（推送文本）：
