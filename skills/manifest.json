@@ -1,15 +1,11 @@
 {
   "version": 1,
   "skills": [
-    { "name": "grilling", "repo": "https://github.com/mattpocock/skills", "path": "skills/productivity/grilling" },
-    { "name": "grill-me", "repo": "https://github.com/mattpocock/skills", "path": "skills/productivity/grill-me" },
     { "name": "writing-plans", "repo": "https://github.com/obra/superpowers", "path": "skills/writing-plans" },
     { "name": "verification-before-completion", "repo": "https://github.com/obra/superpowers", "path": "skills/verification-before-completion" },
     { "name": "systematic-debugging", "repo": "https://github.com/obra/superpowers", "path": "skills/systematic-debugging" },
     { "name": "improve-codebase-architecture", "repo": "https://github.com/mattpocock/skills", "path": "skills/engineering/improve-codebase-architecture" },
     { "name": "codebase-design", "repo": "https://github.com/mattpocock/skills", "path": "skills/engineering/codebase-design" },
-    { "name": "research", "repo": "https://github.com/mattpocock/skills", "path": "skills/engineering/research" },
-    { "name": "unslop", "repo": "https://github.com/michaelshimeles/rstack", "path": "unslop" },
-    { "name": "web-design-guidelines", "repo": "https://github.com/vercel-labs/agent-skills", "path": "skills/web-design-guidelines" }
+    { "name": "research", "repo": "https://github.com/mattpocock/skills", "path": "skills/engineering/research" }
   ]
 }

@@ -10,12 +10,26 @@ $manifestPath = Join-Path $root 'skills/manifest.json'
 $manifest = Get-Content -LiteralPath $manifestPath -Raw | ConvertFrom-Json
 $targetDir = Join-Path $env:APPDATA 'com.sculab.openlab\runtime\xdg-config\opencode\skills'
 $cacheDir = Join-Path $root 'butler/data/skills-cache'
+$managedFile = Join-Path $cacheDir 'managed.json'
 New-Item -ItemType Directory -Path $targetDir -Force | Out-Null
 New-Item -ItemType Directory -Path $cacheDir -Force | Out-Null
 
 $env:HOME = $env:USERPROFILE
 
 $results = @()
+$previousManaged = @()
+if (Test-Path -LiteralPath $managedFile) {
+    try { $previousManaged = @(Get-Content -LiteralPath $managedFile -Raw | ConvertFrom-Json) } catch { $previousManaged = @() }
+}
+$currentNames = @($manifest.skills | ForEach-Object { $_.name })
+
+# 清理：只移除"我们以前托管、现在不在清单"的 skill（不碰 OpenLab 内置的）
+$stale = @($previousManaged | Where-Object { $_ -notin $currentNames })
+foreach ($name in $stale) {
+    $d = Join-Path $targetDir $name
+    if (Test-Path -LiteralPath $d) { Remove-Item -LiteralPath $d -Recurse -Force; $results += "[pruned] $name (no longer in manifest)" }
+}
+
 foreach ($skill in $manifest.skills) {
     if ($Only -and $skill.name -notin $Only) { continue }
     $slug = ($skill.repo -replace 'https://github.com/', '' -replace '[\\/]', '__')
@@ -51,5 +65,8 @@ foreach ($skill in $manifest.skills) {
     }
 }
 
+if (-not $DryRun) {
+    [System.IO.File]::WriteAllText($managedFile, ($currentNames | ConvertTo-Json), (New-Object System.Text.UTF8Encoding($false)))
+}
 $results += "manifest: $($manifest.skills.Count) skills, target: $targetDir"
 $results
