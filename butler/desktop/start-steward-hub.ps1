@@ -38,6 +38,10 @@ $gwProc = $null
 $slProc = $null
 Write-Host "[hub] watchdog started; root=$root port=$Port gatewayPort=$GatewayPort snowlumaPort=$SnowLumaPort weekly=$Weekly"
 
+if (Test-Path -LiteralPath (Join-Path $root 'butler/desktop/sync-skills.ps1')) {
+    & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $root 'butler/desktop/sync-skills.ps1') 2>&1 | ForEach-Object { Write-Host "[hub][skills] $_" }
+}
+
 while ($true) {
     if ($dsProc -and $dsProc.HasExited) {
         Write-Host "[hub] DSH Web exited code $($dsProc.ExitCode)"
@@ -71,6 +75,7 @@ while ($true) {
             $openlab = 'C:\Users\10840\Documents\OpenLab\sessions\2026-09-08-1614'
             if (Test-Path -LiteralPath (Join-Path $openlab '.git')) { & git -C $openlab pull --ff-only 2>&1 | Out-Null }
             if (Test-Path -LiteralPath (Join-Path $root '.git')) { & git -C $root pull --ff-only 2>&1 | Out-Null }
+            & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $root 'butler/desktop/sync-skills.ps1') 2>&1 | Out-Null
             Start-Hidden 'powershell.exe' @('-NoProfile', '-ExecutionPolicy', 'Bypass', '-File', $weeklyRunner) 'weekly'
         }
     }
