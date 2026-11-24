@@ -1,8 +1,8 @@
-# DSH Steward
+# 天枢（Steward）
 
-**Steward**（中文：管家）是一个个性化的 DeepSeek Harness（DSH）改造项目：住在你电脑里的个人电脑管家。
+**天枢**（技术名 Steward，中文古星名，北斗第一星、中枢之意）是一个个性化的 DeepSeek Harness（DSH）改造项目：住在你电脑里的个人电脑管家。
 
-它不是一个通用研究平台，也不是 OpenLab。OpenLab 只是开发它的宿主应用；Steward 是项目本身。
+它不是一个通用研究平台，也不是 OpenLab。OpenLab 只是开发它的宿主应用；天枢是项目本身。
 
 ## 一句话
 
@@ -19,10 +19,11 @@
 
 ## 名字
 
-- 英文：**Steward**
-- 中文：**管家**
+- 产品名：**天枢**（北斗第一星，中枢/枢纽之意）
+- 技术名：**Steward**（代码与脚本内部仍用 Steward/STEWARD_HOME 等标识，不随名字改动）
+- 智能体：**evolve-agent**（开发与维护者）
 - 代码目录：`butler/`
-- 运行时：DSH（当前锁定 0.1.7-rc.1，用于 Computer Use）
+- 运行时：DSH（当前 0.2.2-rc.4）
 
 ## 边界
 

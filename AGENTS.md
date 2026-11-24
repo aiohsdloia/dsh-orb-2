@@ -42,7 +42,7 @@
 9. Close completed work instead of leaving it hanging.
 10. Capture one reusable lesson in each review.
 11. Never stop processes: no `taskkill`, no `Stop-Process`, no `taskkill /T /F`. If something must stop, ask the user first and verify PID, process name, and command line.
-12. Names are separate: OpenLab = host app, Steward = project/product, evolve-agent = the agent. Never reuse one name for another, and never match or kill processes by name patterns.
+12. Names are separate: OpenLab = host app, 天枢（Steward）= project/product, evolve-agent = the agent. Never reuse one name for another, and never match or kill processes by name patterns.
 13. Servers run only through scripts or Task Scheduler, never from ad-hoc shell calls that a tool timeout may reap.
 
 ## Self-Evolution Loop

@@ -1,6 +1,6 @@
 # Current State
 
-- Project: **DSH Steward（管家）** — 基于 DSH 0.2.2 的个人电脑管家。OpenLab 是宿主 App；Steward 是项目；evolve-agent 是智能体。
+- Project: **天枢（DSH Steward，个人电脑管家）** — 基于 DSH 0.2.2 的个人电脑管家。OpenLab 是宿主 App；Steward 是项目；evolve-agent 是智能体。
 - 主通道：DSH Web（3107）+ QQ 机器人（养鱼插件 + SnowLuma）；远程走网关 8080（Tailscale/局域网）。
 - 周报：五源主动订阅（arXiv/PubMed/RSS/GitHub/B站）→ DSH 合成 → 文件推送到 QQ。
 
