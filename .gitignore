@@ -32,3 +32,6 @@ butler/vendor/
 # Pasted screenshots and scratch images at repo root
 /pasted*.png
 /*.png
+
+# Scratch dir for ad-hoc probes
+butler/tmp-cua/
