@@ -12,8 +12,8 @@ $env:HOME = $env:USERPROFILE
 $log = New-Object System.Collections.ArrayList
 
 function Step([string]$name, [scriptblock]$fn) {
-    try { & $fn; $log.Add("[ok] $name") | Out-Null }
-    catch { $log.Add("[fail] $name: $($_.Exception.Message)") | Out-Null }
+    try { & $fn; $log.Add("[ok] ${name}") | Out-Null }
+    catch { $log.Add("[fail] ${name}: $($_.Exception.Message)") | Out-Null }
 }
 
 Write-Host "=== Steward 主机部署 $((Get-Date).ToString('s')) ==="
