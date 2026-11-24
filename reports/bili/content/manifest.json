@@ -1,0 +1,11 @@
+{
+  "items": {
+    "BV1Kw456pEwm": null
+  },
+  "errors": [
+    {
+      "bvid": "BV1Kw456pEwm",
+      "error": "yt-dlp failed: Deprecated Feature: Support for Python version 3.10 has been deprecated. Please update to Python 3.11 or above\nERROR: \n[download] Got error: HTTP Error 567: Unknown Status. Giving up after 10 retries\n"
+    }
+  ]
+}

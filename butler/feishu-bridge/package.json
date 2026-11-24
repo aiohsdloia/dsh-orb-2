@@ -1,0 +1,10 @@
+{
+  "name": "butler-feishu-bridge",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Minimal Feishu long-connection probe for the dsh butler.",
+  "dependencies": {
+    "@larksuiteoapi/node-sdk": "^1.24.0"
+  }
+}

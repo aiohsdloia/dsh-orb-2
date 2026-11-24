@@ -1,0 +1,18 @@
+{
+  "topics": ["人工智能", "大模型", "AI Agent", "开源模型"],
+  "ups": [],
+  "blacklist": ["广告", "搬运", "切片"],
+  "ranking": { "enabled": false },
+  "limits": {
+    "perTopic": 8,
+    "perUp": 8,
+    "ranking": 8,
+    "total": 25,
+    "minDurationSec": 60,
+    "maxDurationSec": 7200,
+    "sinceDays": 14,
+    "minPlay": 500,
+    "minLike": 10
+  },
+  "notes": "第一版只做发现/筛选/去重/带来源简报，不做字幕或 ASR。ups 填你关注的 UP 名称；ranking 默认关闭，避免全站热榜噪音。"
+}

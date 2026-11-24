@@ -1,0 +1,34 @@
+.DS_Store
+*.swp
+*.swo
+*~
+
+# Cloned upstream source (large; reproduced by git clone)
+upstream/
+
+# Node deps
+node_modules/
+
+# Local secrets / test tokens
+secrets/
+*.local.env
+
+# Butler runtime data (captures, OCR, db, logs)
+butler/data/
+butler/**/data/
+
+# Personal Bilibili interests (use interests.example.json as template)
+butler/config/interests.json
+
+# Personal weekly-report config (use weekly.example.json as template)
+butler/config/weekly.json
+
+# Vendored third-party runtimes (QQ protocol side, large bins)
+butler/vendor/
+
+# OpenLab app-managed state (provenance, compute config)
+.openlab/
+
+# Pasted screenshots and scratch images at repo root
+/pasted*.png
+/*.png

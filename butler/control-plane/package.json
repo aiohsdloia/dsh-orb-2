@@ -1,0 +1,11 @@
+{
+  "name": "butler-control-plane",
+  "private": true,
+  "version": "0.0.1",
+  "type": "module",
+  "description": "Job state machine, budget, approvals, ledger, and session mapping for the butler.",
+  "scripts": {
+    "init": "node --no-warnings src/cli.mjs init",
+    "test": "node --no-warnings test/smoke.mjs"
+  }
+}

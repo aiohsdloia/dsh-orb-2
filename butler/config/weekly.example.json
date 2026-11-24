@@ -1,0 +1,49 @@
+{
+  "arxiv": {
+    "enabled": true,
+    "categories": ["cs.AI", "cs.CL", "cs.LG"],
+    "keywords": ["agent", "reasoning", "multimodal", "RAG", "alignment", "scaling", "world model"],
+    "max": 15,
+    "days": 7
+  },
+  "pubmed": {
+    "enabled": true,
+    "query": "",
+    "keywords": ["AI", "LLM", "aging", "longevity", "cognition"],
+    "max": 15,
+    "days": 7
+  },
+  "rss": {
+    "enabled": true,
+    "feeds": [
+      { "name": "Science News", "url": "https://www.science.org/rss/news_current.xml" },
+      { "name": "Nature (may be blocked on some networks)", "url": "https://www.nature.com/nature.rss" }
+    ],
+    "max": 15,
+    "days": 7
+  },
+  "github": {
+    "enabled": true,
+    "language": "",
+    "spokenLanguage": "",
+    "max": 20,
+    "since": "weekly"
+  },
+  "bili": {
+    "enabled": true,
+    "max": 15,
+    "transcribeTop": 3
+  },
+  "llm": {
+    "tokenBudget": 200000,
+    "dshJs": "",
+    "dshHome": ""
+  },
+  "push": {
+    "enabled": true,
+    "mode": "file",
+    "targetQq": "1084088867",
+    "onebotHttp": "http://127.0.0.1:3000",
+    "onebotToken": ""
+  }
+}

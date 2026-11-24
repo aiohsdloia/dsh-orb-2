@@ -1,0 +1,17 @@
+{
+  "topics": [],
+  "ups": [{ "name": "IT咖啡馆", "mid": 65564239 }],
+  "blacklist": [],
+  "ranking": { "enabled": false },
+  "limits": {
+    "perTopic": 0,
+    "perUp": 10,
+    "ranking": 0,
+    "total": 10,
+    "minDurationSec": 0,
+    "maxDurationSec": 7200,
+    "sinceDays": 30,
+    "minPlay": 0,
+    "minLike": 0
+  }
+}

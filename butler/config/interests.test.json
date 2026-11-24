@@ -1,0 +1,17 @@
+{
+  "topics": ["人工智能"],
+  "ups": [],
+  "blacklist": [],
+  "ranking": { "enabled": true },
+  "limits": {
+    "perTopic": 10,
+    "perUp": 5,
+    "ranking": 8,
+    "total": 15,
+    "minDurationSec": 60,
+    "maxDurationSec": 7200,
+    "sinceDays": 60,
+    "minPlay": 1000,
+    "minLike": 20
+  }
+}

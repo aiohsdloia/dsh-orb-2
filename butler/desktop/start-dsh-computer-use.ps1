@@ -1,11 +1,21 @@
 [CmdletBinding()]
 param(
     [ValidateRange(1024, 65535)]
-    [int]$Port = 3107
+    [int]$Port = 3107,
+
+    # A concrete local interface address. DSH rejects wildcard binds.
+    [string]$HostAddress = '127.0.0.1',
+
+    # Optional reverse-proxy support: advertise this URL and trust these authorities.
+    [string]$PublicUrl = '',
+    [string[]]$TrustedHost = @()
 )
 
 $ErrorActionPreference = 'Stop'
-$root = (Resolve-Path (Join-Path $PSScriptRoot '../..')).Path
+if ($HostAddress -ne '127.0.0.1') {
+    throw 'DSH 0.1.7 only binds 127.0.0.1 and refuses 0.0.0.0 (RCE exposure). Use an SSH/Tailscale/Cloudflare tunnel or an authenticated reverse proxy.'
+}
+$root = if ($env:STEWARD_HOME) { (Resolve-Path $env:STEWARD_HOME).Path } else { (Resolve-Path (Join-Path $PSScriptRoot '../..')).Path }
 $source = Join-Path $root 'upstream/deepseek-harness-orb'
 $version = '0.1.7-rc.1'
 $revision = '51f09764d7ff99947be08ebbb2ca2388faab3df4'
@@ -31,9 +41,12 @@ $workspace = Join-Path $data 'workspace'
 New-Item -ItemType Directory -Path $workspace -Force | Out-Null
 
 $authPath = Join-Path $env:APPDATA 'com.sculab.openlab/runtime/xdg-data/opencode/auth.json'
-$key = (Get-Content -LiteralPath $authPath -Raw | ConvertFrom-Json).deepseek.key
+$key = $env:DEEPSEEK_API_KEY
+if ([string]::IsNullOrWhiteSpace($key) -and (Test-Path -LiteralPath $authPath)) {
+    $key = (Get-Content -LiteralPath $authPath -Raw | ConvertFrom-Json).deepseek.key
+}
 if ([string]::IsNullOrWhiteSpace($key)) {
-    throw 'OpenLab DeepSeek credential is unavailable.'
+    throw 'Set DEEPSEEK_API_KEY (or provide the OpenLab auth.json on a dev machine).'
 }
 
 $previousKey = $env:DEEPSEEK_API_KEY
@@ -46,7 +59,10 @@ try {
     $env:DSH_HOME = Join-Path $data 'home'
     $env:DSH_TELEMETRY_DISABLED = '1'
     $env:TSX_TSCONFIG_PATH = Join-Path $source 'tsconfig.json'
-    & node --import ([uri]$tsx).AbsoluteUri $cli --profile web --patch $patch --host 127.0.0.1 --port $Port --no-open
+    $nodeArgs = @('--import', ([uri]$tsx).AbsoluteUri, $cli, '--profile', 'web', '--patch', $patch, '--host', $HostAddress, '--port', "$Port", '--no-open')
+    if ($PublicUrl) { $nodeArgs += @('--public-url', $PublicUrl) }
+    foreach ($th in $TrustedHost) { $nodeArgs += @('--trusted-host', $th) }
+    & node @nodeArgs
     if ($LASTEXITCODE -ne 0) {
         throw "DSH Web exited with code $LASTEXITCODE."
     }
