@@ -1,4 +1,4 @@
-[CmdletBinding()]
+﻿[CmdletBinding()]
 param(
     [string]$Out = 'steward-runtime.zip',
     [switch]$IncludeBiliModels = $true
