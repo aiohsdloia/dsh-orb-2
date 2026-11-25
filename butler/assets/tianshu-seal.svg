@@ -1,17 +1,33 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title">
-  <title id="title">天枢 · 北斗星印</title>
+  <title id="title">天枢 · 墨斗。斗柄如行笔，斗口一颗主星。</title>
   <defs>
-    <path id="seal" d="M54 9H198Q213 9 223 19L237 33Q247 43 247 57V201Q247 215 237 225L225 237Q215 247 201 247H55Q41 247 31 237L19 225Q9 215 9 201V55Q9 41 19 31L31 19Q41 9 54 9Z"/>
-    <clipPath id="edge"><use href="#seal"/></clipPath>
+    <linearGradient id="paper" x2=".18" y2="1" gradientUnits="objectBoundingBox">
+      <stop stop-color="#FCFCF9"/><stop offset=".7" stop-color="#F4F4F0"/><stop offset="1" stop-color="#E6E7E3"/>
+    </linearGradient>
+    <linearGradient id="ink" x1="0" y1="1" x2=".9" y2=".1">
+      <stop stop-color="#666965"/><stop offset=".36" stop-color="#363835"/><stop offset=".7" stop-color="#141614"/><stop offset="1" stop-color="#30322F"/>
+    </linearGradient>
+    <filter id="wick" x="-3%" y="-3%" width="106%" height="106%">
+      <feTurbulence type="fractalNoise" baseFrequency=".13" numOctaves="3" seed="16" result="ragged"/>
+      <feDisplacementMap in="SourceGraphic" in2="ragged" scale="2.2" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <path id="paper-edge" d="M61 7H195Q248 7 248 60V196Q248 249 195 249H61Q8 249 8 196V60Q8 7 61 7Z"/>
+    <clipPath id="edge"><use href="#paper-edge"/></clipPath>
+    <linearGradient id="wash" x2="0" y2="1"><stop stop-color="#92958F" stop-opacity=".48"/><stop offset="1" stop-color="#D9DAD6" stop-opacity="0"/></linearGradient>
   </defs>
-  <use href="#seal" fill="#B53E2C"/>
-  <g clip-path="url(#edge)" fill="none" stroke="#952E22" opacity=".63">
-    <circle cx="220" cy="-22" r="225" stroke-width="3"/>
-    <circle cx="220" cy="-22" r="237" stroke-width="1.8"/>
+  <use href="#paper-edge" fill="url(#paper)" stroke="#A4A6A0" stroke-width="1.2"/>
+  <g id="detail-landscape" clip-path="url(#edge)" fill="url(#wash)">
+    <path d="M6 204Q28 199 48 204C64 211 73 201 82 205S103 213 115 206L123 204L137 193L144 195L154 187L161 189L177 176L184 177L196 167L205 172L217 158L223 157L237 148L251 154V240H6Z"/>
+    <path d="M88 225Q104 218 119 220L136 214L144 216L162 206L170 205L182 199L187 201L204 187L212 184L221 173L226 175L237 159L242 161L251 153V247H88Z"/>
   </g>
-  <!-- The outer lip is left open where the principal star lands. -->
-  <path fill="#FFF3D7" d="M33 190L60 152Q64 146 71 145L95 142L117 111L110 68L153 60L151 70L123 77L130 105L191 95L186 78L195 75L207 104L130 120L105 154L76 160Z"/>
-  <path fill="#FFF3D7" d="M181 26C182 48 189 56 212 58C191 62 184 70 182 91C178 70 171 63 151 61C172 57 179 49 181 26Z"/>
-  <circle cx="181.5" cy="59.5" r="4" fill="#B53E2C"/>
-  <path fill="#F7C297" d="M42 209L62 201L53 209L35 216Z"/>
+  <g id="ink-glyph" fill="url(#ink)" filter="url(#wick)">
+    <!-- A tapering handle joins a folded bowl. The upper rim stops at Dubhe. -->
+    <path id="dipper" d="M29 202C40 186 50 168 60 151Q64 145 70 144L92 139Q105 126 116 110L109 82Q105 72 106 65Q127 64 155 56L150 65Q140 70 121 74L132 105Q162 99 185 90L181 77L190 73L203 99Q174 109 134 119Q120 135 103 154Q89 156 73 161C59 171 43 190 29 202Z"/>
+    <path d="M178 24C179 44 184 51 207 55C187 60 181 67 179 87C175 67 168 60 150 57C170 52 176 46 178 24Z"/>
+  </g>
+  <g id="detail-bristles" fill="none" stroke-linecap="round">
+    <path d="M28 208Q45 189 61 172M40 188Q52 169 61 159" stroke="#5E605B" stroke-width="1.1"/>
+    <path d="M47 178L66 154L78 151M112 69L131 65M139 112Q158 108 171 103" stroke="#FAFAF5" stroke-width="1.15" opacity=".85"/>
+    <path d="M119 108L115 89M85 153L95 151" stroke="#FBFBF9" stroke-width=".75"/>
+  </g>
 </svg>
