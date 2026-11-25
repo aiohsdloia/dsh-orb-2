@@ -3,7 +3,7 @@
 ## 架构
 
 ```
-QQ 客户端（登录小号 3802375978）
+QQ 客户端（登录小号 <机器人小号QQ>）
   ↑ 注入
 SnowLuma v2.4.2（127.0.0.1:5099 WebUI；OneBot WS 3001 / HTTP 3000，token 强制）
   ↑ OneBot v11

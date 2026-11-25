@@ -34,7 +34,14 @@ New-Item -ItemType Directory -Path $stage | Out-Null
 foreach ($it in $items) {
     $dst = Join-Path $stage $it.InZip
     New-Item -ItemType Directory -Path (Split-Path $dst) -Force | Out-Null
-    Copy-Item -LiteralPath (Join-Path $root $it.Path) -Destination $dst -Recurse -Force
+    $src = Join-Path $root $it.Path
+    if ($it.Path -like '*\snowluma') {
+        New-Item -ItemType Directory -Path $dst -Force | Out-Null
+        Get-ChildItem -LiteralPath $src | Where-Object { $_.Name -notin @('config', 'data') -and $_.Extension -ne '.zip' } |
+            ForEach-Object { Copy-Item -LiteralPath $_.FullName -Destination $dst -Recurse -Force }
+    } else {
+        Copy-Item -LiteralPath $src -Destination $dst -Recurse -Force
+    }
 }
 Set-Content -LiteralPath (Join-Path $stage 'runtime-version.json') -Value (@{
     packedAt = (Get-Date).ToString('s')

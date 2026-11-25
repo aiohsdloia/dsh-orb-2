@@ -3,7 +3,7 @@ param(
     [Parameter(Mandatory = $true)]
     [string]$Text,
     [string]$File,
-    [string]$TargetQq = '1084088867',
+    [string]$TargetQq = '<主人QQ号>',
     [string]$OnebotHttp = 'http://127.0.0.1:3000',
     [string]$TokenFile = 'C:\Users\10840\Documents\OpenLab\projects\dsh-orb-2\butler\data\dsh-0.2.2-rc.4\home\dsh-onebot-qq\config.json'
 )

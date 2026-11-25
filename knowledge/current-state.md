@@ -9,7 +9,7 @@
 - DSH **0.2.2-rc.4**（npm 安装）：`butler/data/dsh-0.2.2-rc.4/`，DSH_HOME=`.../home`，web profile。
 - Computer Use：官方主线已内置（Cua Driver 原生 provider，win32 二进制随可选依赖）；profile patch 注册 `dsh-computer-use` + `dsh-experimental-computer-use-cua-driver-native`。0.2.2 下完整端到端**待实测**（0.1.7 曾验收通过）。
 - QQ：**养鱼插件 dsh-onebot-qq v0.1.2**（link 装进 web profile，12 子插件）+ **SnowLuma v2.4.2**（唯一现存 release；注入 PC 版 QQ，OneBot WS 3001 / HTTP 3000，token 强制）。旧自研 qq.mjs 适配器已删除。
-- QQ 身份：机器人=小号 3802375978（QQ 客户端登录小号，SnowLuma 注入）；主人=大号 1084088867。第三方注入有风控风险：只私聊、低频。
+- QQ 身份：机器人=小号 <机器人小号QQ>（QQ 客户端登录小号，SnowLuma 注入）；主人=大号 <主人QQ号>。第三方注入有风控风险：只私聊、低频。
 - 启动：`butler/desktop/start-dsh-0.2.ps1`（3107）、`butler/adapters/start-snowluma.ps1`（5099/3000/3001，HOOK_AUTOLOAD）、`start-steward-hub.ps1` 看门狗（DSH+网关+SnowLuma+周日周报），`start-hub.cmd` 快捷方式已放 shell:startup。
 - 网关：`butler/remote/gateway.mjs` 0.0.0.0:8080 → 127.0.0.1:3107，配对码轮换（`butler/data/gateway-code.txt`）。
 

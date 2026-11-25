@@ -42,7 +42,7 @@
   "push": {
     "enabled": true,
     "mode": "file",
-    "targetQq": "1084088867",
+    "targetQq": "<主人QQ号>",
     "onebotHttp": "http://127.0.0.1:3000",
     "onebotToken": ""
   }

@@ -41,7 +41,7 @@
 用 pwsh 调用 OneBot HTTP 推送文件或文本到主人 QQ（号码与 token 在配置里）。示例（推送文本）：
 
 ```powershell
-$body = @{ user_id = 1084088867; message = @(@{ type='text'; data=@{ text='<要发的内容>' } }) } | ConvertTo-Json -Depth 5
+$body = @{ user_id = <主人QQ号>; message = @(@{ type='text'; data=@{ text='<要发的内容>' } }) } | ConvertTo-Json -Depth 5
 Invoke-RestMethod -Uri 'http://127.0.0.1:3000/send_private_msg' -Method Post -ContentType 'application/json' -Headers @{ Authorization='Bearer <HTTP token>' } -Body $body
 ```
 
