@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-labelledby="title">
+  <title id="title">天枢 · 北斗星印</title>
+  <defs>
+    <path id="seal" d="M54 9H198Q213 9 223 19L237 33Q247 43 247 57V201Q247 215 237 225L225 237Q215 247 201 247H55Q41 247 31 237L19 225Q9 215 9 201V55Q9 41 19 31L31 19Q41 9 54 9Z"/>
+    <clipPath id="edge"><use href="#seal"/></clipPath>
+  </defs>
+  <use href="#seal" fill="#B53E2C"/>
+  <g clip-path="url(#edge)" fill="none" stroke="#952E22" opacity=".63">
+    <circle cx="220" cy="-22" r="225" stroke-width="3"/>
+    <circle cx="220" cy="-22" r="237" stroke-width="1.8"/>
+  </g>
+  <!-- The outer lip is left open where the principal star lands. -->
+  <path fill="#FFF3D7" d="M33 190L60 152Q64 146 71 145L95 142L117 111L110 68L153 60L151 70L123 77L130 105L191 95L186 78L195 75L207 104L130 120L105 154L76 160Z"/>
+  <path fill="#FFF3D7" d="M181 26C182 48 189 56 212 58C191 62 184 70 182 91C178 70 171 63 151 61C172 57 179 49 181 26Z"/>
+  <circle cx="181.5" cy="59.5" r="4" fill="#B53E2C"/>
+  <path fill="#F7C297" d="M42 209L62 201L53 209L35 216Z"/>
+</svg>

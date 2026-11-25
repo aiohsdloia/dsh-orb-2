@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>天枢 · 工作台选择设计稿</title>
+<style>
+  * { box-sizing: border-box }
+  body { margin: 0; background: transparent }
+  #tianshu-picker { width: min(100%, 420px); margin: auto; color: #282920; background: #F4EFE4; font: 14px "Microsoft YaHei UI","Microsoft YaHei",sans-serif; color-scheme: light }
+  #tianshu-picker .mast { height: 118px; position: relative; overflow: hidden; padding: 17px 22px 0; isolation: isolate }
+  #tianshu-picker .map { position: absolute; z-index: -1; top: 10px; right: -9px; width: 216px; height: 128px }
+  #tianshu-picker .brand { display: flex; align-items: center; gap: 10px; height: 61px }
+  #tianshu-picker h1 { font: 55px/1 STKaiti,KaiTi,SimSun,serif; margin: 0; letter-spacing: 2px; color: #2C2B23 }
+  #tianshu-picker .chop { color: #9E3928; border: 1px solid #A54833; padding: 3px 2px; font: 12px/1 SimSun,serif; writing-mode: vertical-rl; letter-spacing: 2px; border-radius: 2px }
+  #tianshu-picker .roman { color: #665D4E; margin: 7px 0 0 4px; font: 11px Georgia,serif; letter-spacing: 4px }
+  #tianshu-picker .choices { padding: 0 20px 20px }
+  #tianshu-picker h2 { display: flex; align-items: center; gap: 12px; margin: 0 0 11px; height: 17px; font-size: 12px; font-weight: 500; color: #685F51; letter-spacing: 1px }
+  #tianshu-picker h2::after { content: ""; flex: 1; height: 1px; background: #CFC4AF }
+  #tianshu-picker .entry { display: grid; width: 100%; grid-template-columns: 45px minmax(0,1fr) auto 11px; gap: 12px; align-items: center; padding: 0 15px; height: 72px; border: 1px solid #CFC5B1; border-radius: 7px; background: #FBF8F0; color: #2B2D25; font: inherit; text-align: left; cursor: pointer }
+  #tianshu-picker .entry + .entry { margin-top: 10px }
+  #tianshu-picker .main { border-color: #30382F; background: #30382F; color: #FBF4E6 }
+  #tianshu-picker .entry:hover { background: #F1E9D9; border-color: #917F63 }
+  #tianshu-picker .main:hover { background: #3B4638; border-color: #56624F }
+  #tianshu-picker .entry:active { transform: translateY(1px) }
+  #tianshu-picker .entry:focus-visible { outline: 2px solid #A63725; outline-offset: 3px }
+  #tianshu-picker .entry[aria-pressed=true] .state { color: #91402C; font-weight: bold }
+  #tianshu-picker .main[aria-pressed=true] .state { color: #FFE0AD }
+  #tianshu-picker .mark { width: 44px; height: 44px }
+  #tianshu-picker .entry strong { display: block; font-size: 19px; font-weight: 600; line-height: 1.25 }
+  #tianshu-picker .entry small { display: block; margin-top: 3px; font-size: 12px; color: #685F51 }
+  #tianshu-picker .main small { color: #DBD8C8 }
+  #tianshu-picker .state { color: #71695B; font-size: 11px; white-space: nowrap }
+  #tianshu-picker .main .state { color: #D1D2C2 }
+  #tianshu-picker .state::before { display: inline-block; content: ""; width: 5px; height: 5px; border: 1px solid currentColor; border-radius: 50%; margin: 0 5px 1px 0 }
+  #tianshu-picker .entry[aria-pressed=true] .state::before { background: currentColor }
+  #tianshu-picker .arrow { width: 7px; height: 7px; justify-self: end; border: solid currentColor; border-width: 1.4px 1.4px 0 0; transform: rotate(45deg) }
+  #tianshu-picker .labmark { background: #E8E5D7; border-radius: 8px; display: grid; place-items: center; color: #4D5B4C }
+  #tianshu-picker .labmark svg { width: 30px; height: 30px }
+  @media (max-width:360px) { #tianshu-picker .map { right: -42px } #tianshu-picker .entry { padding-inline: 11px; gap: 8px } }
+</style>
+<main id="tianshu-picker" aria-label="天枢统一入口设计预览">
+  <header class="mast">
+    <img class="map" src="tianshu-chart.svg" alt="">
+    <div class="brand"><h1>天枢</h1><span class="chop">北斗</span></div>
+    <p class="roman" lang="en">STEWARD</p>
+  </header>
+  <section class="choices" aria-labelledby="tianshu-choose">
+    <h2 id="tianshu-choose">选择工作台</h2>
+    <button type="button" class="entry main" data-key="dsh" aria-pressed="false">
+      <img class="mark" src="tianshu-seal.svg" alt="">
+      <span><strong>天枢</strong><small>DSH 个人管家</small></span>
+      <span class="state">待检测</span><span class="arrow" aria-hidden="true"></span>
+    </button>
+    <button type="button" class="entry" data-key="openlab" aria-pressed="false">
+      <span class="mark labmark" aria-hidden="true"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="m4 11 12-6 12 6-12 6zM4 16l12 6 12-6M4 21l12 6 12-6"/></svg></span>
+      <span><strong lang="en">OpenLab</strong><small>开发工作台</small></span>
+      <span class="state">待检测</span><span class="arrow" aria-hidden="true"></span>
+    </button>
+  </section>
+</main>
+<script>
+(() => {
+  const picker = document.getElementById("tianshu-picker");
+  const entries = Array.from(picker.querySelectorAll("button[data-key]"));
+  function select(key) {
+    for (const entry of entries) {
+      const chosen = entry.dataset.key === key;
+      entry.setAttribute("aria-pressed", String(chosen));
+      entry.querySelector(".state").textContent = chosen ? "已选择" : "待检测";
+    }
+  }
+  for (const entry of entries) {
+    entry.addEventListener("click", () => {
+      select(entry.dataset.key);
+      window.openai?.setWidgetState?.({modelContent: {selection: entry.dataset.key}, privateContent: null})?.catch(() => {});
+    });
+  }
+  select(window.openai?.widgetState?.modelContent?.selection);
+  window.addEventListener("openai:set_globals", event => {
+    const state = event.detail?.globals?.widgetState;
+    if (state) select(state.modelContent?.selection);
+  });
+})();
+</script>
+</html>
