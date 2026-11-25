@@ -41,6 +41,9 @@ Write-Host "[hub] watchdog started; root=$root port=$Port gatewayPort=$GatewayPo
 if (Test-Path -LiteralPath (Join-Path $root 'butler/desktop/sync-skills.ps1')) {
     & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $root 'butler/desktop/sync-skills.ps1') 2>&1 | ForEach-Object { Write-Host "[hub][skills] $_" }
 }
+if (Test-Path -LiteralPath (Join-Path $root 'butler/desktop/ensure-qq-plugins.ps1')) {
+    & powershell.exe -NoProfile -ExecutionPolicy Bypass -File (Join-Path $root 'butler/desktop/ensure-qq-plugins.ps1') 2>&1 | ForEach-Object { Write-Host "[hub][qq-plugins] $_" }
+}
 
 while ($true) {
     if ($dsProc -and $dsProc.HasExited) {
